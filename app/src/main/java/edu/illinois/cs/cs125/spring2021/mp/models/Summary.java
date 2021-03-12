@@ -124,8 +124,17 @@ public class Summary implements SortedListAdapter.ViewModel {
     return equals(model);
   }
 
+  /**
+   * compare two course models.
+   */
   public static final Comparator<Summary> COMPARATOR = (courseModel1, courseModel2) -> 0;
 
+  /**
+   * filter coursename by text.
+   * @param courses list of courses
+   * @param text input text
+   * @return filtered list
+   */
   public static List<Summary> filter(
       @NonNull final List<Summary> courses, @NonNull final String text) {
     return courses;
