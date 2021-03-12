@@ -1,0 +1,439 @@
+[ {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "574",
+  "title" : "Randomized Algorithms"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "102",
+  "title" : "Little Bits to Big Ideas"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "419",
+  "title" : "Production Computer Graphics"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "476",
+  "title" : "Program Verification"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "446",
+  "title" : "Machine Learning"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "468",
+  "title" : "Tech and Advertising Campaigns"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "533",
+  "title" : "Parallel Computer Architecture"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "465",
+  "title" : "User Interface Design"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "445",
+  "title" : "Computational Photography"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "493",
+  "title" : "Senior Project II, ACP"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "199",
+  "title" : "Undergraduate Open Seminar in Computer Science"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "125",
+  "title" : "Intro to Computer Science"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "428",
+  "title" : "Software Engineering II"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "598",
+  "title" : "Special Topics"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "412",
+  "title" : "Introduction to Data Mining"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "483",
+  "title" : "Applied Parallel Programming"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "555",
+  "title" : "Numerical Methods for PDEs"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "494",
+  "title" : "Senior Project II"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "497",
+  "title" : "CS Team Project"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "126",
+  "title" : "Software Design Studio"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "421",
+  "title" : "Programming Languages & Compilers"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "413",
+  "title" : "Intro to Combinatorics"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "361",
+  "title" : "Probability & Statistics for Computer Science"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "233",
+  "title" : "Computer Architecture"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "543",
+  "title" : "Computer Vision"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "422",
+  "title" : "Programming Language Design"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "565",
+  "title" : "Human-Computer Interaction"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "429",
+  "title" : "Software Engineering II, ACP"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "511",
+  "title" : "Advanced Data Management"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "418",
+  "title" : "Interactive Computer Graphics"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "547",
+  "title" : "Deep Learning"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "374",
+  "title" : "Introduction to Algorithms & Models of Computation"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "526",
+  "title" : "Advanced Compiler Construction"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "525",
+  "title" : "Advanced Distributed Systems"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "296",
+  "title" : "Honors Course"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "563",
+  "title" : "Advanced Computer Security"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "357",
+  "title" : "Numerical Methods I"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "210",
+  "title" : "Ethical & Professional Issues"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "107",
+  "title" : "Data Science Discovery"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "447",
+  "title" : "Natural Language Processing"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "498",
+  "title" : "Special Topics"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "423",
+  "title" : "Operating Systems Design"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "425",
+  "title" : "Distributed Systems"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "484",
+  "title" : "Parallel Programming"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "538",
+  "title" : "Advanced Computer Networks"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "467",
+  "title" : "Social Visualization"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "591",
+  "title" : "Advanced Seminar"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "397",
+  "title" : "Individual Study"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "461",
+  "title" : "Computer Security I"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "599",
+  "title" : "Thesis Research"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "101",
+  "title" : "Intro Computing: Engrg & Sci"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "173",
+  "title" : "Discrete Structures"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "482",
+  "title" : "Simulation"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "440",
+  "title" : "Artificial Intelligence"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "105",
+  "title" : "Intro Computing: Non-Tech"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "450",
+  "title" : "Numerical Analysis"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "196",
+  "title" : "Freshman Honors"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "434",
+  "title" : "Mobile Computing & Application"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "240",
+  "title" : "Introduction to Computer Systems"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "411",
+  "title" : "Database Systems"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "241",
+  "title" : "System Programming"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "225",
+  "title" : "Data Structures"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "491",
+  "title" : "Seminar"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "433",
+  "title" : "Computer System Organization"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "466",
+  "title" : "Introduction to Bioinformatics"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "463",
+  "title" : "Computer Security II"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "242",
+  "title" : "Programming Studio"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "510",
+  "title" : "Advanced Information Retrieval"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "512",
+  "title" : "Data Mining Principles"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "473",
+  "title" : "Algorithms"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "431",
+  "title" : "Embedded Systems"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "439",
+  "title" : "Wireless Networks"
+}, {
+  "year" : "2021",
+  "semester" : "spring",
+  "department" : "CS",
+  "number" : "499",
+  "title" : "Senior Thesis"
+} ]
