@@ -71,7 +71,7 @@ public final class MainActivity extends AppCompatActivity
     setSupportActionBar(binding.toolbar);
 
     // Set this activity's title
-    setTitle("Search Course");
+    setTitle("Search Courses");
   }
 
   /**
