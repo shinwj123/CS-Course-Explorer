@@ -5,6 +5,7 @@ import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Model holding the course summary information shown in the course list.
@@ -67,6 +68,15 @@ public class Summary implements SortedListAdapter.ViewModel {
     return title;
   }
 
+  /**
+   * Get the name for this Summary.
+   *
+   * @return the name for this Summary.
+   */
+  public final String getName() {
+    return department + " " + number + ": " + title;
+  }
+
   /** Create an empty Summary. */
   @SuppressWarnings({"unused", "RedundantSuppression"})
   public Summary() {}
@@ -127,7 +137,21 @@ public class Summary implements SortedListAdapter.ViewModel {
   /**
    * compare two course models.
    */
-  public static final Comparator<Summary> COMPARATOR = (courseModel1, courseModel2) -> 0;
+  public static final Comparator<Summary> COMPARATOR = (courseModel1, courseModel2) -> {
+    int departmentCompare = courseModel1.department.compareTo(courseModel2.department);
+
+    if (departmentCompare != 0) {
+      return departmentCompare;
+    }
+
+    int numberCompare = courseModel1.number.compareTo(courseModel2.number);
+
+    if (numberCompare != 0) {
+      return numberCompare;
+    }
+
+    return courseModel1.title.compareTo(courseModel2.title);
+  };
 
   /**
    * filter coursename by text.
@@ -137,6 +161,8 @@ public class Summary implements SortedListAdapter.ViewModel {
    */
   public static List<Summary> filter(
       @NonNull final List<Summary> courses, @NonNull final String text) {
-    return courses;
+    return courses.stream()
+            .filter(course -> course.getName().toLowerCase().contains(text.toLowerCase()))
+            .collect(Collectors.toList());
   }
 }
