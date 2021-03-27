@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="@{model.number}"
+            android:text="@{model.department + ' ' + model.number + ':' + ' ' + model.title}"
             android:textColor="@android:color/black"
             android:textSize="22sp" />
 
