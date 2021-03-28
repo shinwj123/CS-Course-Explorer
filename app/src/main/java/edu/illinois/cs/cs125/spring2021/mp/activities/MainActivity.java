@@ -128,6 +128,7 @@ public final class MainActivity extends AppCompatActivity
    */
   @Override
   public boolean onQueryTextChange(final String query) {
+    listAdapter.edit().replaceAll(Summary.filter(courses,query)).commit();
     return true;
   }
 
