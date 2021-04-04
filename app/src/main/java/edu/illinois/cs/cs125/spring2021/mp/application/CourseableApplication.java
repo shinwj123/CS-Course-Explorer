@@ -1,6 +1,8 @@
 package edu.illinois.cs.cs125.spring2021.mp.application;
 
 import android.app.Application;
+import android.os.Build;
+
 import edu.illinois.cs.cs125.spring2021.mp.network.Client;
 import edu.illinois.cs.cs125.spring2021.mp.network.Server;
 
@@ -26,7 +28,11 @@ public class CourseableApplication extends Application {
     super.onCreate();
 
     client = Client.start();
-    new Thread(Server::start).start();
+    if (Build.FINGERPRINT.equals("robolectric")) {
+      Server.start();
+    } else {
+      new Thread(Server::start).start();
+    }
   }
 
   /**
