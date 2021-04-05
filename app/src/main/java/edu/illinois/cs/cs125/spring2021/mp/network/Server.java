@@ -1,12 +1,15 @@
 package edu.illinois.cs.cs125.spring2021.mp.network;
 
 import androidx.annotation.NonNull;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import edu.illinois.cs.cs125.spring2021.mp.application.CourseableApplication;
 import edu.illinois.cs.cs125.spring2021.mp.models.Summary;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
@@ -14,6 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -55,6 +59,20 @@ public final class Server extends Dispatcher {
   @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
   private final Map<Summary, String> courses = new HashMap<>();
 
+  private MockResponse getCourse(@NonNull final String path) {
+    String[] parts = path.split("/");
+    if (parts.length != 4) {
+      return new MockResponse().setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST);
+    }
+
+    Summary summary = new Summary(parts[0], parts[1], parts[2], parts[3],  "");
+    String course = courses.get(summary);
+    if (course == null) {
+      return new MockResponse().setResponseCode(HttpURLConnection.HTTP_NOT_FOUND);
+    }
+    return new MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(course);
+  }
+
   @NonNull
   @Override
   public MockResponse dispatch(@NonNull final RecordedRequest request) {
@@ -66,6 +84,8 @@ public final class Server extends Dispatcher {
         return new MockResponse().setBody("CS125").setResponseCode(HttpURLConnection.HTTP_OK);
       } else if (path.startsWith("/summary/")) {
         return getSummary(path.replaceFirst("/summary/", ""));
+      } else if (path.startsWith("/course/")) {
+        return getCourse(path.replaceFirst("/course/", ""));
       }
       return new MockResponse().setResponseCode(HttpURLConnection.HTTP_NOT_FOUND);
     } catch (Exception e) {
@@ -89,10 +109,14 @@ public final class Server extends Dispatcher {
     }
   }
 
-  /** Number of times to check the server before failing. */
+  /**
+   * Number of times to check the server before failing.
+   */
   private static final int RETRY_COUNT = 8;
 
-  /** Delay between retries. */
+  /**
+   * Delay between retries.
+   */
   private static final int RETRY_DELAY = 512;
 
   /**
@@ -113,7 +137,7 @@ public final class Server extends Dispatcher {
             return true;
           } else {
             throw new IllegalStateException(
-                "Another server is running on port " + CourseableApplication.DEFAULT_SERVER_PORT);
+                    "Another server is running on port " + CourseableApplication.DEFAULT_SERVER_PORT);
           }
         }
       } catch (IOException ignored) {
@@ -151,7 +175,7 @@ public final class Server extends Dispatcher {
   private void loadSummary(@NonNull final String year, @NonNull final String semester) {
     String filename = "/" + year + "_" + semester + "_summary.json";
     String json =
-        new Scanner(Server.class.getResourceAsStream(filename), "UTF-8").useDelimiter("\\A").next();
+            new Scanner(Server.class.getResourceAsStream(filename), "UTF-8").useDelimiter("\\A").next();
     summaries.put(year + "_" + semester, json);
   }
 
@@ -159,7 +183,7 @@ public final class Server extends Dispatcher {
   private void loadCourses(@NonNull final String year, @NonNull final String semester) {
     String filename = "/" + year + "_" + semester + ".json";
     String json =
-        new Scanner(Server.class.getResourceAsStream(filename), "UTF-8").useDelimiter("\\A").next();
+            new Scanner(Server.class.getResourceAsStream(filename), "UTF-8").useDelimiter("\\A").next();
     try {
       JsonNode nodes = mapper.readTree(json);
       for (Iterator<JsonNode> it = nodes.elements(); it.hasNext(); ) {

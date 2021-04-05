@@ -170,53 +170,53 @@ public final class MP2Test {
     /**
      * Test the course server route.
      */
-//    @Test(timeout = 10000L)
-//    @Graded(points = 15)
-//    public void testServerCourseRoute() throws IOException {
-//      Server.start();
-//      // Check the backend to make sure its responding to requests correctly
-//      assertThat(Server.isRunning(false)).isTrue();
-//
-//      OkHttpClient client = new OkHttpClient();
-//
-//      for (String courseString : courses) {
-//        ObjectNode node = (ObjectNode) mapper.readTree(courseString);
-//        String url =
-//            CourseableApplication.SERVER_URL
-//                + "course/"
-//                + node.get("year").asText()
-//                + "/"
-//                + node.get("semester").asText()
-//                + "/"
-//                + node.get("department").asText()
-//                + "/"
-//                + node.get("number").asText();
-//        Request courseRequest = new Request.Builder().url(url).build();
-//        Response courseResponse = client.newCall(courseRequest).execute();
-//        assertThat(courseResponse.code()).isEqualTo(HttpStatus.SC_OK);
-//        ResponseBody body = courseResponse.body();
-//        assertThat(body).isNotNull();
-//        Course course = mapper.readValue(body.string(), Course.class);
-//        compareCourseToSerializedCourse(course, courseString);
-//      }
-//
-//      // Test some bad requests
-//      // Bad course
-//      Request request =
-//          new Request.Builder()
-//              .url(CourseableApplication.SERVER_URL + "course/2020/spring/CS/188/")
-//              .build();
-//      Response response = client.newCall(request).execute();
-//      assertThat(response.code()).isEqualTo(HttpStatus.SC_NOT_FOUND);
-//
-//      // Bad URL
-//      request =
-//          new Request.Builder()
-//              .url(CourseableApplication.SERVER_URL + "courses/2021/spring/CS/125/")
-//              .build();
-//      response = client.newCall(request).execute();
-//      assertThat(response.code()).isEqualTo(HttpStatus.SC_NOT_FOUND);
-//    }
+    @Test(timeout = 10000L)
+    @Graded(points = 15)
+    public void testServerCourseRoute() throws IOException {
+      Server.start();
+      // Check the backend to make sure its responding to requests correctly
+      assertThat(Server.isRunning(false)).isTrue();
+
+      OkHttpClient client = new OkHttpClient();
+
+      for (String courseString : courses) {
+        ObjectNode node = (ObjectNode) mapper.readTree(courseString);
+        String url =
+            CourseableApplication.SERVER_URL
+                + "course/"
+                + node.get("year").asText()
+                + "/"
+                + node.get("semester").asText()
+                + "/"
+                + node.get("department").asText()
+                + "/"
+                + node.get("number").asText();
+        Request courseRequest = new Request.Builder().url(url).build();
+        Response courseResponse = client.newCall(courseRequest).execute();
+        assertThat(courseResponse.code()).isEqualTo(HttpStatus.SC_OK);
+        ResponseBody body = courseResponse.body();
+        assertThat(body).isNotNull();
+        Course course = mapper.readValue(body.string(), Course.class);
+        compareCourseToSerializedCourse(course, courseString);
+      }
+
+      // Test some bad requests
+      // Bad course
+      Request request =
+          new Request.Builder()
+              .url(CourseableApplication.SERVER_URL + "course/2020/spring/CS/188/")
+              .build();
+      Response response = client.newCall(request).execute();
+      assertThat(response.code()).isEqualTo(HttpStatus.SC_NOT_FOUND);
+
+      // Bad URL
+      request =
+          new Request.Builder()
+              .url(CourseableApplication.SERVER_URL + "courses/2021/spring/CS/125/")
+              .build();
+      response = client.newCall(request).execute();
+      assertThat(response.code()).isEqualTo(HttpStatus.SC_NOT_FOUND);
+    }
   }
 
 //  @SuppressWarnings("SameParameterValue")
