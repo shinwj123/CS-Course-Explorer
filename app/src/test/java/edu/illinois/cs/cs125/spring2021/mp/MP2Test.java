@@ -28,7 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import edu.illinois.cs.cs125.gradlegrader.annotations.Graded;
-//import edu.illinois.cs.cs125.spring2021.mp.activities.CourseActivity;
+import edu.illinois.cs.cs125.spring2021.mp.activities.CourseActivity;
 import edu.illinois.cs.cs125.spring2021.mp.activities.MainActivity;
 import edu.illinois.cs.cs125.spring2021.mp.application.CourseableApplication;
 import edu.illinois.cs.cs125.spring2021.mp.models.Course;
@@ -219,107 +219,107 @@ public final class MP2Test {
     }
   }
 
-//  @SuppressWarnings("SameParameterValue")
-//  @RunWith(AndroidJUnit4.class)
-//  @LooperMode(LooperMode.Mode.PAUSED)
-//  public static class IntegrationTests {
-//    @BeforeClass
-//    public static void setup() throws IOException {
-//      MP2Test.setup();
-//    }
-//
-//    /**
-//     * Test the client getCourse method
-//     */
-//    @Test(timeout = 20000L)
-//    @Graded(points = 15)
-//    public void testClientGetCourse()
-//        throws JsonProcessingException, InterruptedException, ExecutionException {
-//      Client client = Client.start();
-//
-//      for (String summaryString : summaries) {
-//        Summary summary = mapper.readValue(summaryString, Summary.class);
-//        CompletableFuture<Course> completableFuture = new CompletableFuture<>();
-//        client.getCourse(
-//            summary,
-//            new Client.CourseClientCallbacks() {
-//              @Override
-//              public void courseResponse(Summary summary, Course course) {
-//                completableFuture.complete(course);
-//              }
-//            });
-//        Course course = completableFuture.get();
-//        compareCourseToSerializedSummary(course, summaryString);
-//      }
-//    }
-//
-//    /**
-//     * Test CourseActivity with intent.
-//     */
-//    @Test(timeout = 10000L)
-//    @Graded(points = 20)
-//    public void testCourseView() throws JsonProcessingException, InterruptedException {
-//      for (int i = 0; i < 4; i++) {
-//        String summaryString = summaries.get(i);
-//        String courseString = courses.get(i);
-//        Intent intent =
-//            new Intent(ApplicationProvider.getApplicationContext(), CourseActivity.class);
-//        intent.putExtra("COURSE", summaryString);
-//        ActivityScenario<CourseActivity> courseScenario = ActivityScenario.launch(intent);
-//        courseScenario.moveToState(Lifecycle.State.CREATED);
-//        courseScenario.moveToState(Lifecycle.State.RESUMED);
-//        ObjectNode course = (ObjectNode) mapper.readTree(courseString);
-//        Thread.sleep(100);
-//        onView(ViewMatchers.withText(course.get("description").asText()))
-//            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-//      }
-//    }
-//
-//    /**
-//     * Test onClick CourseActivity launch from MainActivity
-//     */
-//    @Test(timeout = 10000L)
-//    @Graded(points = 10)
-//    public void testOnClickLaunch() {
-//      // Launch the main activity and confirm correct transition to CourseActivity
-//      ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
-//      scenario.moveToState(Lifecycle.State.CREATED);
-//      scenario.moveToState(Lifecycle.State.RESUMED);
-//
-//      scenario.onActivity(
-//          activity -> {
-//            // Sanity checks
-//            onView(withId(R.id.recycler_view)).check(countRecyclerView(73));
-//            onView(withRecyclerView(R.id.recycler_view).atPosition(0))
-//                .check(matches(hasDescendant(withText("CS 101: Intro Computing: Engrg & Sci"))));
-//            onView(withRecyclerView(R.id.recycler_view).atPosition(0)).perform(click());
-//            Intent started = shadowOf(activity).getNextStartedActivity();
-//            String courseExtra = started.getStringExtra("COURSE");
-//            try {
-//              ObjectNode node = (ObjectNode) mapper.readTree(courseExtra);
-//              assertThat(node.get("year").asText()).isEqualTo("2021");
-//              assertThat(node.get("semester").asText()).isEqualTo("spring");
-//              assertThat(node.get("department").asText()).isEqualTo("CS");
-//              assertThat(node.get("number").asText()).isEqualTo("101");
-//            } catch (JsonProcessingException e) {
-//              throw new IllegalStateException(e.getMessage());
-//            }
-//          });
-//    }
-//
-//    // Helper functions for the test suite above.
-//    private ViewAssertion countRecyclerView(int expected) {
-//      return (v, noViewFoundException) -> {
-//        if (noViewFoundException != null) {
-//          throw noViewFoundException;
-//        }
-//        RecyclerView view = (RecyclerView) v;
-//        RecyclerView.Adapter<?> adapter = view.getAdapter();
-//        assert adapter != null;
-//        assertThat(adapter.getItemCount()).isEqualTo(expected);
-//      };
-//    }
-//  }
+  @SuppressWarnings("SameParameterValue")
+  @RunWith(AndroidJUnit4.class)
+  @LooperMode(LooperMode.Mode.PAUSED)
+  public static class IntegrationTests {
+    @BeforeClass
+    public static void setup() throws IOException {
+      MP2Test.setup();
+    }
+
+    /**
+     * Test the client getCourse method
+     */
+    @Test(timeout = 20000L)
+    @Graded(points = 15)
+    public void testClientGetCourse()
+            throws JsonProcessingException, InterruptedException, ExecutionException {
+      Client client = Client.start();
+
+      for (String summaryString : summaries) {
+        Summary summary = mapper.readValue(summaryString, Summary.class);
+        CompletableFuture<Course> completableFuture = new CompletableFuture<>();
+        client.getCourse(
+                summary,
+                new Client.CourseClientCallbacks() {
+                  @Override
+                  public void courseResponse(Summary summary, Course course) {
+                    completableFuture.complete(course);
+                  }
+                });
+        Course course = completableFuture.get();
+        compareCourseToSerializedSummary(course, summaryString);
+      }
+    }
+
+    /**
+     * Test CourseActivity with intent.
+     */
+    @Test(timeout = 10000L)
+    @Graded(points = 20)
+    public void testCourseView() throws JsonProcessingException, InterruptedException {
+      for (int i = 0; i < 4; i++) {
+        String summaryString = summaries.get(i);
+        String courseString = courses.get(i);
+        Intent intent =
+            new Intent(ApplicationProvider.getApplicationContext(), CourseActivity.class);
+        intent.putExtra("COURSE", summaryString);
+        ActivityScenario<CourseActivity> courseScenario = ActivityScenario.launch(intent);
+        courseScenario.moveToState(Lifecycle.State.CREATED);
+        courseScenario.moveToState(Lifecycle.State.RESUMED);
+        ObjectNode course = (ObjectNode) mapper.readTree(courseString);
+        Thread.sleep(100);
+        onView(ViewMatchers.withText(course.get("description").asText()))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+      }
+    }
+
+    /**
+     * Test onClick CourseActivity launch from MainActivity
+     */
+    @Test(timeout = 10000L)
+    @Graded(points = 10)
+    public void testOnClickLaunch() {
+      // Launch the main activity and confirm correct transition to CourseActivity
+      ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
+      scenario.moveToState(Lifecycle.State.CREATED);
+      scenario.moveToState(Lifecycle.State.RESUMED);
+
+      scenario.onActivity(
+          activity -> {
+            // Sanity checks
+            onView(withId(R.id.recycler_view)).check(countRecyclerView(73));
+            onView(withRecyclerView(R.id.recycler_view).atPosition(0))
+                .check(matches(hasDescendant(withText("CS 101: Intro Computing: Engrg & Sci"))));
+            onView(withRecyclerView(R.id.recycler_view).atPosition(0)).perform(click());
+            Intent started = shadowOf(activity).getNextStartedActivity();
+            String courseExtra = started.getStringExtra("COURSE");
+            try {
+              ObjectNode node = (ObjectNode) mapper.readTree(courseExtra);
+              assertThat(node.get("year").asText()).isEqualTo("2021");
+              assertThat(node.get("semester").asText()).isEqualTo("spring");
+              assertThat(node.get("department").asText()).isEqualTo("CS");
+              assertThat(node.get("number").asText()).isEqualTo("101");
+            } catch (JsonProcessingException e) {
+              throw new IllegalStateException(e.getMessage());
+            }
+          });
+    }
+
+    // Helper functions for the test suite above.
+    private ViewAssertion countRecyclerView(int expected) {
+      return (v, noViewFoundException) -> {
+        if (noViewFoundException != null) {
+          throw noViewFoundException;
+        }
+        RecyclerView view = (RecyclerView) v;
+        RecyclerView.Adapter<?> adapter = view.getAdapter();
+        assert adapter != null;
+        assertThat(adapter.getItemCount()).isEqualTo(expected);
+      };
+    }
+  }
 
   private static void compareCourseToSerializedCourse(Course course, String serializedCourse)
       throws JsonProcessingException {

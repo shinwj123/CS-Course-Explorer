@@ -61,11 +61,12 @@ public final class Server extends Dispatcher {
 
   private MockResponse getCourse(@NonNull final String path) {
     String[] parts = path.split("/");
-    if (parts.length != 4) {
+    final int pathSize = 4;
+    if (parts.length != pathSize) {
       return new MockResponse().setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST);
     }
 
-    Summary summary = new Summary(parts[0], parts[1], parts[2], parts[3],  "");
+    Summary summary = new Summary(parts[0], parts[1], parts[2], parts[3], "");
     String course = courses.get(summary);
     if (course == null) {
       return new MockResponse().setResponseCode(HttpURLConnection.HTTP_NOT_FOUND);

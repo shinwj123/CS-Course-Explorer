@@ -1,6 +1,8 @@
 package edu.illinois.cs.cs125.spring2021.mp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -140,5 +142,11 @@ public final class MainActivity extends AppCompatActivity
    * @param course the course that was clicked
    */
   @Override
-  public void onCourseClicked(final Summary course) {}
+  public void onCourseClicked(final Summary course) {
+    Log.i(TAG, "onCourseClicked");
+    Intent courseIntent = new Intent(this, CourseActivity.class);
+    // Serialize course to pass through the intent
+    courseIntent.putExtra("COURSE", "Testing");
+    startActivity(courseIntent);
+  }
 }

@@ -1,7 +1,9 @@
 package edu.illinois.cs.cs125.spring2021.mp.network;
 
 import android.util.Log;
+
 import androidx.annotation.NonNull;
+
 import com.android.volley.Cache;
 import com.android.volley.ExecutorDelivery;
 import com.android.volley.Network;
@@ -14,8 +16,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import edu.illinois.cs.cs125.spring2021.mp.application.CourseableApplication;
+import edu.illinois.cs.cs125.spring2021.mp.models.Course;
 import edu.illinois.cs.cs125.spring2021.mp.models.Summary;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -39,38 +44,68 @@ public final class Client {
     /**
      * Return course summaries for the given year and semester.
      *
-     * @param year the year that was retrieved
-     * @param semester the semester that was retrieved
+     * @param year      the year that was retrieved
+     * @param semester  the semester that was retrieved
      * @param summaries an array of course summaries
      */
-    default void summaryResponse(String year, String semester, Summary[] summaries) {}
+    default void summaryResponse(String year, String semester, Summary[] summaries) {
+    }
+
+    /**
+     * response the course.
+     * @param summary
+     * @param course
+     */
+    default void courseResponse(Summary summary, Course course) {
+    }
   }
 
   /**
    * Retrieve course summaries for a given year and semester.
    *
-   * @param year the year to retrieve
-   * @param semester the semester to retrieve
+   * @param year      the year to retrieve
+   * @param semester  the semester to retrieve
    * @param callbacks the callback that will receive the result
    */
   public void getSummary(
-      @NonNull final String year,
-      @NonNull final String semester,
-      @NonNull final CourseClientCallbacks callbacks) {
+          @NonNull final String year,
+          @NonNull final String semester,
+          @NonNull final CourseClientCallbacks callbacks) {
     String url = CourseableApplication.SERVER_URL + "summary/" + year + "/" + semester;
     StringRequest summaryRequest =
-        new StringRequest(
-            Request.Method.GET,
-            url,
-            response -> {
-              try {
-                Summary[] courses = objectMapper.readValue(response, Summary[].class);
-                callbacks.summaryResponse(year, semester, courses);
-              } catch (JsonProcessingException e) {
-                e.printStackTrace();
-              }
-            },
-            error -> Log.e(TAG, error.toString()));
+            new StringRequest(
+                    Request.Method.GET,
+                    url,
+                    response -> {
+                      try {
+                        Summary[] courses = objectMapper.readValue(response, Summary[].class);
+                        callbacks.summaryResponse(year, semester, courses);
+                      } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                      }
+                    },
+                    error -> Log.e(TAG, error.toString()));
+    requestQueue.add(summaryRequest);
+  }
+
+  /**
+   * getCourse gets course.
+   *
+   * @param summary
+   * @param callbacks
+   */
+  public void getCourse(
+          @NonNull final Summary summary,
+          @NonNull final CourseClientCallbacks callbacks) {
+    String url = CourseableApplication.SERVER_URL + "course/" + summary.getYear() + "/" + summary.getSemester();
+    StringRequest summaryRequest =
+            new StringRequest(
+                    Request.Method.GET,
+                    url,
+                    response -> {
+                      callbacks.courseResponse(null, null);
+                    },
+                    error -> Log.e(TAG, error.toString()));
     requestQueue.add(summaryRequest);
   }
 
@@ -103,11 +138,11 @@ public final class Client {
     Network network = new BasicNetwork(new HurlStack());
     HttpURLConnection.setFollowRedirects(true);
     requestQueue =
-        new RequestQueue(
-            cache,
-            network,
-            THREAD_POOL_SIZE,
-            new ExecutorDelivery(Executors.newSingleThreadExecutor()));
+            new RequestQueue(
+                    cache,
+                    network,
+                    THREAD_POOL_SIZE,
+                    new ExecutorDelivery(Executors.newSingleThreadExecutor()));
 
     // Configure the Jackson object mapper to ignore unknown properties
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -144,6 +179,6 @@ public final class Client {
                 }
               }
             })
-        .start();
+            .start();
   }
 }
