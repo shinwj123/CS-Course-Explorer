@@ -15,7 +15,7 @@ import edu.illinois.cs.cs125.spring2021.mp.R;
 import edu.illinois.cs.cs125.spring2021.mp.adapters.CourseListAdapter;
 import edu.illinois.cs.cs125.spring2021.mp.application.CourseableApplication;
 import edu.illinois.cs.cs125.spring2021.mp.databinding.ActivityMainBinding;
-import edu.illinois.cs.cs125.spring2021.mp.models.Course;
+//import edu.illinois.cs.cs125.spring2021.mp.models.Course;
 import edu.illinois.cs.cs125.spring2021.mp.models.Summary;
 import edu.illinois.cs.cs125.spring2021.mp.network.Client;
 import java.util.Arrays;
