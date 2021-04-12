@@ -8,6 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import edu.illinois.cs.cs125.spring2021.mp.R;
 import edu.illinois.cs.cs125.spring2021.mp.application.CourseableApplication;
 import edu.illinois.cs.cs125.spring2021.mp.databinding.ActivityCourseBinding;
@@ -36,20 +39,32 @@ public class CourseActivity extends AppCompatActivity implements Client.CourseCl
     Log.i(TAG, "CourseActivity Launched");
 
     // Bind to the layout in activity_main.xml
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_course);
-    binding.title.setText("Hello, Chuchu!");
-
     Intent intent = getIntent();
     String course = intent.getStringExtra("COURSE");
+    Summary summary = new Summary();
+    ObjectMapper objectMapper = new ObjectMapper();
+    try {
+      summary = objectMapper.readValue(course, Summary.class);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_course);
+    binding.title.setText(summary.getTitle());
     Log.i(TAG, course);
 
     //TODO: Use getCourse to retrieve information about the course passed in the intent\
     CourseableApplication application = (CourseableApplication) getApplication();
-    //application.getCourseClient().getCourse(course, this);
+    application.getCourseClient().getCourse(summary, this);
   }
 
+  /**
+   * gets the Description.
+   * @param summary
+   * @param course
+   */
   @Override
   public void courseResponse(final Summary summary, final Course course) {
-
+    String str = course.getDescription();
+    binding.description.setText(str);
   }
 }
