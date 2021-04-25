@@ -53,6 +53,7 @@ public final class Client {
 
     /**
      * response the course.
+     *
      * @param summary
      * @param course
      */
@@ -124,10 +125,20 @@ public final class Client {
    */
   public static Client start() {
     if (instance == null) {
-      instance = new Client();
+      instance = new Client(false);
     }
     return instance;
   }
+
+  /**
+   * Creat e arnd retrieve the course API client for testing.
+   *
+   * @return the course API client
+   */
+  public static Client startTesting() {
+    return new Client(true);
+  }
+
 
   private static final int MAX_STARTUP_RETRIES = 8;
   private static final int THREAD_POOL_SIZE = 4;
@@ -138,17 +149,22 @@ public final class Client {
   /*
    * Set up our client, create the Volley queue, and establish a backend connection.
    */
-  private Client() {
+  private Client(final boolean testing) {
     // Configure the Volley queue used for our network requests
     Cache cache = new NoCache();
     Network network = new BasicNetwork(new HurlStack());
     HttpURLConnection.setFollowRedirects(true);
-    requestQueue =
-            new RequestQueue(
-                    cache,
-                    network,
-                    THREAD_POOL_SIZE,
-                    new ExecutorDelivery(Executors.newSingleThreadExecutor()));
+
+    if (testing) {
+      requestQueue =
+              new RequestQueue(
+                      cache,
+                      network,
+                      THREAD_POOL_SIZE,
+                      new ExecutorDelivery(Executors.newSingleThreadExecutor()));
+    } else {
+      requestQueue = new RequestQueue(cache, network);
+    }
 
     // Configure the Jackson object mapper to ignore unknown properties
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
