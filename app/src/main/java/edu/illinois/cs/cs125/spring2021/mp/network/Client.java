@@ -61,9 +61,20 @@ public final class Client {
     default void courseResponse(Summary summary, Course course) {
     }
 
+    /**
+     * rates it.
+     * @param summary
+     * @param rating
+     */
     default void yourRating(Summary summary, Rating rating) {}
   }
 
+  /**
+   * gets rating summary, clinetID.
+   * @param summary
+   * @param clientID
+   * @param callbacks
+   */
   public void getRating(
           @NonNull final Summary summary,
           @NonNull final String clientID,
@@ -71,6 +82,12 @@ public final class Client {
 
   }
 
+  /**
+   * post Rating.
+   * @param summary
+   * @param rating
+   * @param callbacks
+   */
   public void postRating(
           @NonNull final Summary summary,
           @NonNull final Rating rating,

@@ -85,7 +85,8 @@ public final class Server extends Dispatcher {
     }
 
     int uuid = value.indexOf("=");
-    int uuidLength = 36;
+
+    final int uuidLength = 36;
     String clientID = value.substring(uuid + 1);
 
     int sum = value.indexOf("?");
@@ -120,7 +121,6 @@ public final class Server extends Dispatcher {
   }
 
 
-  
   @NonNull
   @Override
   public MockResponse dispatch(@NonNull final RecordedRequest request) {
