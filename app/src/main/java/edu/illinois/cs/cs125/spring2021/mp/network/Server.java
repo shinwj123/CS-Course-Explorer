@@ -119,11 +119,7 @@ public final class Server extends Dispatcher {
     return new MockResponse().setResponseCode(HttpURLConnection.HTTP_OK);
   }
 
-  private MockResponse postRating(@NonNull final String value,
-                                 @NonNull final RecordedRequest request) throws JsonProcessingException {
-    String s = request.getBody().readUtf8();
-    if(!(isJson))
-  }
+
   
   @NonNull
   @Override
@@ -141,9 +137,6 @@ public final class Server extends Dispatcher {
       } else if (path.startsWith("/rating/")) {
         System.out.println("found the rating");
         return getRating(path.replaceFirst("/rating/", ""), request);
-      } else if (path.startsWith("/rating/")) %% request.getMethod().equalsIgnoreCase("POST"){
-        System.out.println("posted the rating");
-        return postRating(path.replaceFirst("/rating/", ""), request);
       }
       return new MockResponse().setResponseCode(HttpURLConnection.HTTP_NOT_FOUND);
     } catch (Exception e) {
