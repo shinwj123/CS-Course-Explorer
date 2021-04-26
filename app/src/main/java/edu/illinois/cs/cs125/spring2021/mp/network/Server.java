@@ -118,6 +118,12 @@ public final class Server extends Dispatcher {
 
     return new MockResponse().setResponseCode(HttpURLConnection.HTTP_OK);
   }
+
+  private MockResponse postRating(@NonNull final String value,
+                                 @NonNull final RecordedRequest request) throws JsonProcessingException {
+    String s = request.getBody().readUtf8();
+    if(!(isJson))
+  }
   
   @NonNull
   @Override
