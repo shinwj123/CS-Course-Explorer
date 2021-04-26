@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.illinois.cs.cs125.spring2021.mp.application.CourseableApplication;
 import edu.illinois.cs.cs125.spring2021.mp.models.Course;
+import edu.illinois.cs.cs125.spring2021.mp.models.Rating;
 import edu.illinois.cs.cs125.spring2021.mp.models.Summary;
 
 import java.net.HttpURLConnection;
@@ -59,6 +60,22 @@ public final class Client {
      */
     default void courseResponse(Summary summary, Course course) {
     }
+
+    default void yourRating(Summary summary, Rating rating) {}
+  }
+
+  public void getRating(
+          @NonNull final Summary summary,
+          @NonNull final String clientID,
+          @NonNull final CourseClientCallbacks callbacks) {
+
+  }
+
+  public void postRating(
+          @NonNull final Summary summary,
+          @NonNull final Rating rating,
+          @NonNull final CourseClientCallbacks callbacks) {
+
   }
 
   /**
