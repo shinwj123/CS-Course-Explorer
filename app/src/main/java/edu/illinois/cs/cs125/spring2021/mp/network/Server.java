@@ -44,6 +44,16 @@ public final class Server extends Dispatcher {
 
   private final Map<String, String> summaries = new HashMap<>();
 
+  private boolean isJson(final String string) {
+    try {
+      ObjectMapper test = new ObjectMapper();
+      test.readTree(string);
+      return true;
+    } catch (IOException e) {
+      return false;
+    }
+  }
+
   private MockResponse getSummary(@NonNull final String path) {
     String[] parts = path.split("/");
     if (parts.length != 2) {
@@ -55,6 +65,11 @@ public final class Server extends Dispatcher {
       return new MockResponse().setResponseCode(HttpURLConnection.HTTP_NOT_FOUND);
     }
     return new MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(summary);
+  }
+
+  private MockResponse getString(@NonNull final RecordedRequest request) {
+    return new MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody("foo");
+
   }
 
   @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
@@ -120,6 +135,41 @@ public final class Server extends Dispatcher {
     return new MockResponse().setResponseCode(HttpURLConnection.HTTP_OK);
   }
 
+  private MockResponse postRating(@NonNull final String value,
+                                  @NonNull final RecordedRequest request) throws JsonProcessingException {
+    String string = request.getBody().readUtf8();
+    if (!(isJson(string)) || (value.startsWith("/rating/")) || !(value.contains("?client"))) {
+      return new MockResponse().setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST);
+    } else {
+      Rating rating = mapper.readValue(string, Rating.class);
+      int input = value.indexOf("?");
+      String urlPath = value.substring(0, input);
+      Summary summary = new Summary();
+      int count = 0;
+      for (Summary sums : courses.keySet()) {
+        if (urlPath.equals(sums.getYear() + "/" + sums.getSemester() + "/" + sums.getDepartment()
+                + "/" + sums.getNumber())) {
+          summary = sums;
+          count++;
+        }
+      }
+      if (count < 1) {
+        return new MockResponse().setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST);
+      }
+      Map<String, Rating> secondLevel = new HashMap<>();
+      if (ratings.get(summary) == null) {
+        secondLevel.put(rating.getId(), rating);
+        ratings.put(summary, secondLevel);
+      } else {
+        secondLevel = ratings.get(summary);
+        secondLevel.put(rating.getId(), rating);
+        ratings.put(summary, secondLevel);
+      }
+      return new MockResponse().setResponseCode(HttpURLConnection.HTTP_MOVED_TEMP)
+              .setHeader("Location", "");
+    }
+  }
+
 
   @NonNull
   @Override
@@ -132,11 +182,16 @@ public final class Server extends Dispatcher {
         return new MockResponse().setBody("CS125").setResponseCode(HttpURLConnection.HTTP_OK);
       } else if (path.startsWith("/summary/")) {
         return getSummary(path.replaceFirst("/summary/", ""));
+      } else if (path.startsWith("/string")) {
+        return getString(request);
       } else if (path.startsWith("/course/")) {
         return getCourse(path.replaceFirst("/course/", ""));
-      } else if (path.startsWith("/rating/")) {
+      } else if (path.startsWith("/rating/") && request.getMethod().equalsIgnoreCase("GET")) {
         System.out.println("found the rating");
         return getRating(path.replaceFirst("/rating/", ""), request);
+      } else if (path.startsWith("/rating/") && request.getMethod().equalsIgnoreCase("POST")) {
+        System.out.println("found the rating");
+        return postRating(path.replaceFirst("/rating/", ""), request);
       }
       return new MockResponse().setResponseCode(HttpURLConnection.HTTP_NOT_FOUND);
     } catch (Exception e) {

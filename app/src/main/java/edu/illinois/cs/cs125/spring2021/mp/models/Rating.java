@@ -31,7 +31,7 @@ public class Rating {
    * @return ID.
    */
   public String getId() {
-    return null;
+    return id;
   }
 
   /**
@@ -39,6 +39,6 @@ public class Rating {
    * @return NOT_RATED.
    */
   public double getRating() {
-    return NOT_RATED;
+    return rating;
   }
 }
